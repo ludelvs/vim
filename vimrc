@@ -264,8 +264,9 @@ filetype off
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 " originalrepos on github
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
 "NeoBundle 'VimClojure'
@@ -292,7 +293,7 @@ NeoBundle 'JavaScript-syntax'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 NeoBundle 'Lokaltog/powerline-fontpatcher'
-
+call neobundle#end()
 filetype plugin indent on     " required!
 filetype indent on
 
