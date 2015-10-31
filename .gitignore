@@ -2,6 +2,7 @@
 .neocon/buffer_cache
 .neocon/syntax_cache
 .neocon/tags_pattens
+.neocon/include_cache
 .neocon/async_error_log
 bundle/.neobundle
 bundle/NeoBundle.lock
