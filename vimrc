@@ -433,7 +433,7 @@ nmap <F3> :Ref phpmanual
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <C-c> :YRShow<CR>
 "For YankRIng.vim history file
-let g:yankring_history_dir = '$HOME/.vim/bundle/YankRing.vim'
+let g:yankring_history_dir = '$HOME/.vim'
 
 " recording @ enable
 let g:yankring_zap_keys = 'f F t T / ?'
