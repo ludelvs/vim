@@ -1,0 +1,37 @@
+snippet   newclass
+abbr      <?php class ${4:class_name}...
+prev_word '^'
+  <?php
+  /**
+   * @author Hiroshi Kouda <kouda@dtx.co.jp>
+   * @category delta
+   * @package ${1:package}
+   * @version $Id: $
+   * @copyright Copyright (c) 2006-2012 dt corporation
+   */
+
+snippet   newfunction
+abbr      public function
+prev_word '^'
+    /**
+     * ${1:comment}
+     *
+     * @author Hiroshi Kouda <kouda@dtx.co.jp>
+     */
+    ${2:public} function ${3:function_name}(${4:arguments})
+    {
+      ${4:code...}
+    }
+
+snippet php
+    <?php
+    ${1}
+    ?>
+snippet author
+       @author Hiroshi Kouda <kouda@dtx.co.jp>
+
+snippet service
+       $this->getService(ConstService::${1})->${2}();
+
+snippet dao
+    $${1}DAO = Delta_DAOFactory::create(ConstEntity::${2});

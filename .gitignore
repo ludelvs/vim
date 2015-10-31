@@ -1,0 +1,4 @@
+.neocon/keyword_patterns
+.neocon/buffer_cache
+.neocon/syntax_cache
+bundle/.neobundle
