@@ -265,7 +265,8 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 call neobundle#begin(expand('~/.vim/bundle/'))
-call neobundle#load_cache  " キャッシュの読込み
+" キャッシュの読込み
+call neobundle#load_cache()
 " originalrepos on github
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -294,7 +295,8 @@ NeoBundle 'JavaScript-syntax'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 NeoBundle 'Lokaltog/powerline-fontpatcher'
-NeoBundleSaveCache  " キャッシュの書込み
+" キャッシュの書込み
+NeoBundleSaveCache
 
 call neobundle#end()
 
