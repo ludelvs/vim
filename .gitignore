@@ -6,4 +6,4 @@
 .neocon/async_error_log
 bundle/.neobundle
 bundle/NeoBundle.lock
-bundle/YankRing.vim/yankring_history_v2.txt
+bundle/YankRing.vim
