@@ -265,9 +265,10 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#load_cache  " キャッシュの読込み
 " originalrepos on github
+NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
 "NeoBundle 'VimClojure'
 NeoBundle 'Shougo/vimshell'
@@ -289,11 +290,14 @@ NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'taichouchou2/vim-javascript'
 "NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
-""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+"NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 NeoBundle 'Lokaltog/powerline-fontpatcher'
+NeoBundleSaveCache  " キャッシュの書込み
+
 call neobundle#end()
+
 filetype plugin indent on     " required!
 filetype indent on
 
