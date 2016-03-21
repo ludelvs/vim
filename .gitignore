@@ -9,3 +9,5 @@
 bundle/.neobundle
 bundle/NeoBundle.lock
 yankring_history_v2.txt
+dein
+yankround

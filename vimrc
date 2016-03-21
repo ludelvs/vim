@@ -488,7 +488,7 @@ if &compatible
   set nocompatible
 endif
 " dein.vimのディレクトリ
-let s:dein_dir = expand('~/.vim/.cache/dein')
+let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 " なければgit clone
@@ -499,8 +499,7 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 
 call dein#begin(s:dein_dir)
 
-call dein#add('Shougo/vimproc.vim', {'build': 'make -f make_mac.mak'})
-call dein#add('Shougo/vimproc.vim', {'build': 'make -f make_mac.mak'})
+call dein#add('Shougo/vimproc.vim')
 
 call dein#add('Shougo/neocomplete.vim')
 
@@ -553,5 +552,5 @@ nmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
-let g:yankround_dir = '~/.vim/.cache/yankround'
+let g:yankround_dir = '~/.vim/yankround'
 " }}}
