@@ -261,45 +261,45 @@ set smartcase
 set nocompatible               " be iMproved
 filetype off
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-" キャッシュの読込み
-call neobundle#load_cache()
-" originalrepos on github
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimproc'
-"NeoBundle 'VimClojure'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'jpalardy/vim-slime'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'sudo.vim'
-NeoBundle 'tComment'
-NeoBundle 'Syntastic'
-NeoBundle 'The-NERD-tree'
-NeoBundle 'thinca/vim-ref.git'
-NeoBundle 'vim-scripts/YankRing.vim.git'
-NeoBundle 'jpo/vim-railscasts-theme.git'
-NeoBundle 'git://github.com/tpope/vim-surround.git'
-"NeoBundle 'jquery.vim'
-NeoBundle 'taichouchou2/vim-javascript'
-"NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'JavaScript-syntax'
-"NeoBundle 'https://bitbucket.org/kovisoft/slimv'
-NeoBundle 'alpaca-tc/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-NeoBundle 'Lokaltog/powerline-fontpatcher'
-" キャッシュの書込み
-NeoBundleSaveCache
-
-call neobundle#end()
-
+"if has('vim_starting')
+"  set runtimepath+=~/.vim/bundle/neobundle.vim
+"endif
+"call neobundle#begin(expand('~/.vim/bundle/'))
+"" キャッシュの読込み
+"call neobundle#load_cache()
+"" originalrepos on github
+"NeoBundleFetch 'Shougo/neobundle.vim'
+"NeoBundle 'Shougo/neosnippet-snippets'
+"NeoBundle 'Shougo/vimproc'
+""NeoBundle 'VimClojure'
+"NeoBundle 'Shougo/vimshell'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'jpalardy/vim-slime'
+"NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'othree/eregex.vim'
+"NeoBundle 'sudo.vim'
+"NeoBundle 'tComment'
+"NeoBundle 'Syntastic'
+"NeoBundle 'The-NERD-tree'
+"NeoBundle 'thinca/vim-ref.git'
+"NeoBundle 'vim-scripts/YankRing.vim.git'
+"NeoBundle 'jpo/vim-railscasts-theme.git'
+"NeoBundle 'git://github.com/tpope/vim-surround.git'
+""NeoBundle 'jquery.vim'
+"NeoBundle 'taichouchou2/vim-javascript'
+""NeoBundle 'pangloss/vim-javascript'
+"NeoBundle 'JavaScript-syntax'
+""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+""NeoBundle 'alpaca-tc/alpaca_powertabline'
+""NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+""NeoBundle 'Lokaltog/powerline-fontpatcher'
+"" キャッシュの書込み
+"NeoBundleSaveCache
+"
+"call neobundle#end()
+"
 filetype plugin indent on     " required!
 filetype indent on
 
@@ -307,6 +307,7 @@ let g:Powerline_symbols = 'fancy'
 set t_Co=256
 
 let g:Powerline_symbols = 'compatible'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplcache
@@ -479,3 +480,78 @@ let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
+
+
+
+" dein settings {{{
+if &compatible
+  set nocompatible
+endif
+" dein.vimのディレクトリ
+let s:dein_dir = expand('~/.vim/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" なければgit clone
+if !isdirectory(s:dein_repo_dir)
+  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+endif
+execute 'set runtimepath^=' . s:dein_repo_dir
+
+call dein#begin(s:dein_dir)
+
+call dein#add('Shougo/vimproc.vim', {'build': 'make -f make_mac.mak'})
+call dein#add('Shougo/vimproc.vim', {'build': 'make -f make_mac.mak'})
+
+call dein#add('Shougo/neocomplete.vim')
+
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/vimshell')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neocomplcache.vim')
+call dein#add('Shougo/neosnippet')
+call dein#add('jpalardy/vim-slime')
+call dein#add('scrooloose/syntastic')
+call dein#add('othree/eregex.vim')
+call dein#add('sudo.vim')
+call dein#add('tComment')
+call dein#add('Syntastic')
+call dein#add('The-NERD-tree')
+call dein#add('thinca/vim-ref.git')
+call dein#add('jpo/vim-railscasts-theme.git')
+call dein#add('tpope/vim-surround.git')
+call dein#add('JavaScript-syntax')
+call dein#add('LeafCage/yankround.vim')
+"call dein#add('vim-scripts/YankRing.vim.git')
+" 管理するプラグインを記述したファイル
+"let s:toml = '~/.dein.toml'
+"let s:lazy_toml = '~/.dein_lazy.toml'
+
+call dein#end()
+
+"" 読み込み、キャッシュは :call dein#clear_cache() で消せます
+"if dein#load_state([expand('<sfile>', s:toml, s:lazy_toml)])
+"  call dein#load_toml(s:toml, {'lazy': 0})
+"  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+"  call dein#save_state()
+"endif
+
+" vimprocだけは最初にインストールしてほしい
+if dein#check_install(['vimproc'])
+  call dein#install(['vimproc'])
+endif
+" その他インストールしていないものはこちらに入れる
+if dein#check_install()
+  call dein#install()
+endif
+" }}}
+
+
+" yankround {{{
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_dir = '~/.vim/.cache/yankround'
+" }}}
