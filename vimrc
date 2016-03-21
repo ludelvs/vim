@@ -151,6 +151,7 @@ cmap <silent> <C-b> <ESC>:update<CR>:bN<CR>
 "vmap <silent> <C-e> <ESC>:update<CR>:bd<CR>
 "cmap <silent> <C-e> <ESC>:update<CR>:bd<CR>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 表示
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,66 +241,6 @@ set smartcase
 " 検索後にファイルの先頭へループしない
 "set nowrapscan
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" smartchr
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"inoremap <buffer><expr> + smartchr#one_of(' + ', '++', ' += ')
-"inoremap <buffer><expr> - smartchr#one_of(' - ', '--', ' -= ')
-"inoremap <buffer><expr> / smartchr#one_of(' / ', '// ',  '/')
-"inoremap <buffer><expr> * smartchr#one_of(' * ', '** ')
-"inoremap <buffer><expr> & smartchr#one_of(' & ', ' && ')
-"inoremap <buffer><expr> % smartchr#one_of(' % ')
-"inoremap <buffer><expr> <bar> smartchr#one_of(' <bar> ',  ' <bar><bar> ')
-"inoremap <buffer><expr> , smartchr#one_of(', ', ',')
-"inoremap <buffer><expr> . smartchr#one_of(' . ', '. ')
-"inoremap <buffer><expr> = smartchr#one_of(' = ', ' == ', ' === ')
-"inoremap <buffer><expr> { smartchr#one_of(' {<cr>')
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NeoBundle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible               " be iMproved
-filetype off
-
-"if has('vim_starting')
-"  set runtimepath+=~/.vim/bundle/neobundle.vim
-"endif
-"call neobundle#begin(expand('~/.vim/bundle/'))
-"" キャッシュの読込み
-"call neobundle#load_cache()
-"" originalrepos on github
-"NeoBundleFetch 'Shougo/neobundle.vim'
-"NeoBundle 'Shougo/neosnippet-snippets'
-"NeoBundle 'Shougo/vimproc'
-""NeoBundle 'VimClojure'
-"NeoBundle 'Shougo/vimshell'
-"NeoBundle 'Shougo/unite.vim'
-"NeoBundle 'Shougo/neocomplcache'
-"NeoBundle 'Shougo/neosnippet'
-"NeoBundle 'jpalardy/vim-slime'
-"NeoBundle 'scrooloose/syntastic'
-"NeoBundle 'othree/eregex.vim'
-"NeoBundle 'sudo.vim'
-"NeoBundle 'tComment'
-"NeoBundle 'Syntastic'
-"NeoBundle 'The-NERD-tree'
-"NeoBundle 'thinca/vim-ref.git'
-"NeoBundle 'vim-scripts/YankRing.vim.git'
-"NeoBundle 'jpo/vim-railscasts-theme.git'
-"NeoBundle 'git://github.com/tpope/vim-surround.git'
-""NeoBundle 'jquery.vim'
-"NeoBundle 'taichouchou2/vim-javascript'
-""NeoBundle 'pangloss/vim-javascript'
-"NeoBundle 'JavaScript-syntax'
-""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
-""NeoBundle 'alpaca-tc/alpaca_powertabline'
-""NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-""NeoBundle 'Lokaltog/powerline-fontpatcher'
-"" キャッシュの書込み
-"NeoBundleSaveCache
-"
-"call neobundle#end()
-"
 filetype plugin indent on     " required!
 filetype indent on
 

@@ -1,1 +1,1 @@
-/Users/lude/.vimrc
+vimrc
