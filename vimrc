@@ -428,63 +428,99 @@ let &t_te.="\e[0 q"
 if &compatible
   set nocompatible
 endif
-" dein.vimのディレクトリ
-let s:dein_dir = expand('~/.vim/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" なければgit clone
-if !isdirectory(s:dein_repo_dir)
-  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+" Vim起動完了時にインストール
+augroup PluginInstall
+  autocmd!
+  autocmd VimEnter * if dein#check_install() | call dein#install() | endif
+augroup END
+
+" 各プラグインをインストールするディレクトリ
+let s:plugin_dir = expand('~/.vim/dein/')
+" dein.vimをインストールするディレクトリをランタイムパスへ追加
+let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
+execute 'set runtimepath+=' . s:dein_dir
+
+" dein.vimがまだ入ってなければ 最初に`git clone`
+if !isdirectory(s:dein_dir)
+  call mkdir(s:dein_dir, 'p')
+  silent execute printf('!git clone %s %s', 'https://github.com/Shougo/dein.vim', s:dein_dir)
 endif
-execute 'set runtimepath^=' . s:dein_repo_dir
 
-call dein#begin(s:dein_dir)
+if dein#load_state(s:plugin_dir)
+  call dein#begin(s:plugin_dir)
 
-call dein#add('Shougo/vimproc.vim')
+  " ここからインストールするプラグインを書いていく
+  call dein#add('Shougo/dein.vim')
 
-call dein#add('Shougo/neocomplete.vim')
+  " インストール後ビルドする場合
+  call dein#add('Shougo/vimproc.vim', {
+        \ 'build': {
+        \     'mac': 'make -f make_mac.mak',
+        \     'linux': 'make',
+        \     'unix': 'gmake',
+        \    },
+        \ })
 
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('Shougo/vimshell')
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neocomplcache.vim')
-call dein#add('Shougo/neosnippet')
-call dein#add('jpalardy/vim-slime')
-call dein#add('scrooloose/syntastic')
-call dein#add('othree/eregex.vim')
-call dein#add('sudo.vim')
-call dein#add('tComment')
-call dein#add('Syntastic')
-call dein#add('The-NERD-tree')
-call dein#add('thinca/vim-ref.git')
-call dein#add('jpo/vim-railscasts-theme.git')
-call dein#add('tpope/vim-surround.git')
-call dein#add('JavaScript-syntax')
-call dein#add('LeafCage/yankround.vim')
-"call dein#add('vim-scripts/YankRing.vim.git')
-" 管理するプラグインを記述したファイル
-"let s:toml = '~/.dein.toml'
-"let s:lazy_toml = '~/.dein_lazy.toml'
+  " 条件によって使ったり使わなかったり制御する場合
+  call dein#add('Shougo/neocomplete.vim', {
+        \ 'if' : has('lua')
+        \ })
 
-call dein#end()
+  " 依存関係がある場合
+  call dein#add('Shougo/unite.vim')
+  call dein#add('ujihisa/unite-colorscheme', {'depends' : 'Shougo/unite.vim'})
 
-"" 読み込み、キャッシュは :call dein#clear_cache() で消せます
-"if dein#load_state([expand('<sfile>', s:toml, s:lazy_toml)])
-"  call dein#load_toml(s:toml, {'lazy': 0})
-"  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-"  call dein#save_state()
-"endif
+  " 手動でcall dein#source('プラグイン名')して使い始める場合
+  call dein#add('Shougo/vimfiler', {'lazy' : 1})
 
-" vimprocだけは最初にインストールしてほしい
-if dein#check_install(['vimproc'])
-  call dein#install(['vimproc'])
+  " 指定のファイルタイプ使う場合
+  call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
+
+  " dein.vimで管理して更新だけするリポジトリ（NeoBundleFetchとおなじ）
+  call dein#add('jszakmeister/markdown2ctags', {'rtp': ''})
+
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/vimshell')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neocomplcache.vim')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('jpalardy/vim-slime')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('othree/eregex.vim')
+  call dein#add('sudo.vim')
+  call dein#add('tComment')
+  call dein#add('Syntastic')
+  call dein#add('The-NERD-tree')
+  call dein#add('thinca/vim-ref.git')
+  call dein#add('jpo/vim-railscasts-theme.git')
+  call dein#add('tpope/vim-surround.git')
+  call dein#add('JavaScript-syntax')
+  call dein#add('LeafCage/yankround.vim')
+
+  " サブディレクトリを指定してdein#add()する場合
+  " frozenオプションは自動で更新しない
+  " 自分で開発するプラグインの管理に便利
+  call dein#local('~/src/github.com/violetyk',
+        \ {
+        \   'frozen' : 1,
+        \   'depends' : [
+        \     'kana/vim-gf-user',
+        \     'Shougo/neosnippet.vim',
+        \     'vim-jp/vital.vim'
+        \   ]
+        \ },
+        \ [
+        \   '*.vim',
+        \   'neosnippet-*',
+        \   'neocomplete-*',
+        \   'scratch-utility'
+        \ ])
+  call dein#end()
+  call dein#save_state()
 endif
-" その他インストールしていないものはこちらに入れる
-if dein#check_install()
-  call dein#install()
-endif
-" }}}
 
+filetype plugin indent on
 
 " yankround {{{
 nmap p <Plug>(yankround-p)
