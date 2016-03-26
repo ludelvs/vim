@@ -151,6 +151,7 @@ cmap <silent> <C-b> <ESC>:update<CR>:bN<CR>
 "vmap <silent> <C-e> <ESC>:update<CR>:bd<CR>
 "cmap <silent> <C-e> <ESC>:update<CR>:bd<CR>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 表示
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,66 +241,6 @@ set smartcase
 " 検索後にファイルの先頭へループしない
 "set nowrapscan
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" smartchr
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"inoremap <buffer><expr> + smartchr#one_of(' + ', '++', ' += ')
-"inoremap <buffer><expr> - smartchr#one_of(' - ', '--', ' -= ')
-"inoremap <buffer><expr> / smartchr#one_of(' / ', '// ',  '/')
-"inoremap <buffer><expr> * smartchr#one_of(' * ', '** ')
-"inoremap <buffer><expr> & smartchr#one_of(' & ', ' && ')
-"inoremap <buffer><expr> % smartchr#one_of(' % ')
-"inoremap <buffer><expr> <bar> smartchr#one_of(' <bar> ',  ' <bar><bar> ')
-"inoremap <buffer><expr> , smartchr#one_of(', ', ',')
-"inoremap <buffer><expr> . smartchr#one_of(' . ', '. ')
-"inoremap <buffer><expr> = smartchr#one_of(' = ', ' == ', ' === ')
-"inoremap <buffer><expr> { smartchr#one_of(' {<cr>')
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NeoBundle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible               " be iMproved
-filetype off
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-" キャッシュの読込み
-call neobundle#load_cache()
-" originalrepos on github
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimproc'
-"NeoBundle 'VimClojure'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'jpalardy/vim-slime'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'sudo.vim'
-NeoBundle 'tComment'
-NeoBundle 'Syntastic'
-NeoBundle 'The-NERD-tree'
-NeoBundle 'thinca/vim-ref.git'
-NeoBundle 'vim-scripts/YankRing.vim.git'
-NeoBundle 'jpo/vim-railscasts-theme.git'
-NeoBundle 'git://github.com/tpope/vim-surround.git'
-"NeoBundle 'jquery.vim'
-NeoBundle 'taichouchou2/vim-javascript'
-"NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'JavaScript-syntax'
-"NeoBundle 'https://bitbucket.org/kovisoft/slimv'
-NeoBundle 'alpaca-tc/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-NeoBundle 'Lokaltog/powerline-fontpatcher'
-" キャッシュの書込み
-NeoBundleSaveCache
-
-call neobundle#end()
-
 filetype plugin indent on     " required!
 filetype indent on
 
@@ -307,6 +248,7 @@ let g:Powerline_symbols = 'fancy'
 set t_Co=256
 
 let g:Powerline_symbols = 'compatible'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplcache
@@ -479,3 +421,113 @@ let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
+
+
+
+" dein settings {{{
+if &compatible
+  set nocompatible
+endif
+
+" Vim起動完了時にインストール
+augroup PluginInstall
+  autocmd!
+  autocmd VimEnter * if dein#check_install() | call dein#install() | endif
+augroup END
+
+" 各プラグインをインストールするディレクトリ
+let s:plugin_dir = expand('~/.vim/dein/')
+" dein.vimをインストールするディレクトリをランタイムパスへ追加
+let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
+execute 'set runtimepath+=' . s:dein_dir
+
+" dein.vimがまだ入ってなければ 最初に`git clone`
+if !isdirectory(s:dein_dir)
+  call mkdir(s:dein_dir, 'p')
+  silent execute printf('!git clone %s %s', 'https://github.com/Shougo/dein.vim', s:dein_dir)
+endif
+
+if dein#load_state(s:plugin_dir)
+  call dein#begin(s:plugin_dir)
+
+  " ここからインストールするプラグインを書いていく
+  call dein#add('Shougo/dein.vim')
+
+  " インストール後ビルドする場合
+  call dein#add('Shougo/vimproc.vim', {
+        \ 'build': {
+        \     'mac': 'make -f make_mac.mak',
+        \     'linux': 'make',
+        \     'unix': 'gmake',
+        \    },
+        \ })
+
+  " 条件によって使ったり使わなかったり制御する場合
+  call dein#add('Shougo/neocomplete.vim', {
+        \ 'if' : has('lua')
+        \ })
+
+  " 依存関係がある場合
+  call dein#add('Shougo/unite.vim')
+  call dein#add('ujihisa/unite-colorscheme', {'depends' : 'Shougo/unite.vim'})
+
+  " 手動でcall dein#source('プラグイン名')して使い始める場合
+  call dein#add('Shougo/vimfiler', {'lazy' : 1})
+
+  " 指定のファイルタイプ使う場合
+  call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
+
+  " dein.vimで管理して更新だけするリポジトリ（NeoBundleFetchとおなじ）
+  call dein#add('jszakmeister/markdown2ctags', {'rtp': ''})
+
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/vimshell')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neocomplcache.vim')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('jpalardy/vim-slime')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('othree/eregex.vim')
+  call dein#add('sudo.vim')
+  call dein#add('tComment')
+  call dein#add('Syntastic')
+  call dein#add('The-NERD-tree')
+  call dein#add('thinca/vim-ref.git')
+  call dein#add('jpo/vim-railscasts-theme.git')
+  call dein#add('tpope/vim-surround.git')
+  call dein#add('JavaScript-syntax')
+  call dein#add('LeafCage/yankround.vim')
+
+  " サブディレクトリを指定してdein#add()する場合
+  " frozenオプションは自動で更新しない
+  " 自分で開発するプラグインの管理に便利
+  call dein#local('~/src/github.com/violetyk',
+        \ {
+        \   'frozen' : 1,
+        \   'depends' : [
+        \     'kana/vim-gf-user',
+        \     'Shougo/neosnippet.vim',
+        \     'vim-jp/vital.vim'
+        \   ]
+        \ },
+        \ [
+        \   '*.vim',
+        \   'neosnippet-*',
+        \   'neocomplete-*',
+        \   'scratch-utility'
+        \ ])
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+
+" yankround {{{
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_dir = '~/.vim/yankround'
+" }}}

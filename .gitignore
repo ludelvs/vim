@@ -4,6 +4,10 @@
 .neocon/tags_pattens
 .neocon/include_cache
 .neocon/async_error_log
+.neocon/dictionary_cache
+.neocon/tags_output
 bundle/.neobundle
 bundle/NeoBundle.lock
 yankring_history_v2.txt
+dein
+yankround
