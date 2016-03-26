@@ -434,4 +434,7 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 let g:yankround_dir = '~/.vim/yankround'
+nnoremap <silent><SID>(ctrlp) :<C-u>CtrlP<CR>
+nmap <expr><C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : "<SID>(ctrlp)"
+nnoremap <silent>g<C-p> :<C-u>Unite yankround<CR>
 " }}}
