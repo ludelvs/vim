@@ -259,6 +259,8 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " syntastic {{{
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {'regex': 'possibly useless use of a variable in void context'}
 " }}}
 
 
