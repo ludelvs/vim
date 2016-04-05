@@ -259,6 +259,8 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " syntastic {{{
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {'regex': 'possibly useless use of a variable in void context'}
 " }}}
 
 
@@ -359,6 +361,8 @@ if dein#load_state(s:plugin_dir)
   " インストール後ビルドする場合
   call dein#add('Shougo/vimproc.vim', {
         \ 'build': {
+        \     'windows': 'make -f make_mingw32.mak',
+        \     'cygwin': 'make -f make_cygwin.mak',
         \     'mac': 'make -f make_mac.mak',
         \     'linux': 'make',
         \     'unix': 'gmake',
