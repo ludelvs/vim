@@ -359,15 +359,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('Shougo/dein.vim')
 
   " インストール後ビルドする場合
-  call dein#add('Shougo/vimproc.vim', {
-        \ 'build': {
-        \     'windows': 'make -f make_mingw32.mak',
-        \     'cygwin': 'make -f make_cygwin.mak',
-        \     'mac': 'make -f make_mac.mak',
-        \     'linux': 'make',
-        \     'unix': 'gmake',
-        \    },
-        \ })
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
   " 条件によって使ったり使わなかったり制御する場合
   call dein#add('Shougo/neocomplete.vim', {
