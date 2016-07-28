@@ -396,6 +396,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('tpope/vim-surround.git')
   call dein#add('JavaScript-syntax')
   call dein#add('LeafCage/yankround.vim')
+  call dein#add('tpope/vim-fugitive')
 
   " サブディレクトリを指定してdein#add()する場合
   " frozenオプションは自動で更新しない
