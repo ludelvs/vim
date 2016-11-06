@@ -101,7 +101,7 @@ au BufNewFile,BufRead * match ZenkakuSpace /　/
 
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
-set pastetoggle=<F12>
+set pastetoggle=<C-m>
 
 set shiftround
 
