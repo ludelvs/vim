@@ -448,3 +448,8 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-i> unite#do_action('split
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 " }}}
+
+" 不可視文字を表示させる {{{
+set list
+set listchars=tab:»-,trail:-,nbsp:%,eol:↲
+" }}}
