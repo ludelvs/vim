@@ -436,8 +436,8 @@ nnoremap <silent>g<C-p> :<C-u>Unite yankround<CR>
 " }}}
 
 " unite.vim {{{
-noremap <C-U><C-F> :Unite -buffer-name=file file<CR> " ファイル一覧
-noremap <C-U><C-R> :Unite file_mru<CR> " 最近使ったファイル一覧
+noremap <C-O><C-F> :Unite -buffer-name=file file<CR> " ファイル一覧
+noremap <C-O><C-R> :Unite file_mru<CR> " 最近使ったファイル一覧
 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-i> unite#do_action('split') " ウィンドウを分割して開く
 au FileType unite inoremap <silent> <buffer> <expr> <C-i> unite#do_action('split')
