@@ -155,8 +155,6 @@ augroup invisible
   autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
 augroup END
 
-" カラースキーマの設定
-colorscheme molokai
 
 " 背景色
 "set background=dark
@@ -385,19 +383,19 @@ if dein#load_state(s:plugin_dir)
   call dein#add('Shougo/neocomplcache.vim')
   call dein#add('Shougo/neosnippet')
   call dein#add('jpalardy/vim-slime')
-  call dein#add('scrooloose/syntastic')
+  call dein#add('vim-syntastic/syntastic')
   call dein#add('othree/eregex.vim')
-  call dein#add('sudo.vim')
-  call dein#add('tComment')
-  call dein#add('Syntastic')
-  call dein#add('The-NERD-tree')
+  call dein#add('vim-scripts/sudo.vim')
+  call dein#add('vim-scripts/tComment')
+  call dein#add('vim-scripts/The-NERD-tree')
   call dein#add('thinca/vim-ref.git')
   call dein#add('jpo/vim-railscasts-theme.git')
   call dein#add('tpope/vim-surround.git')
-  call dein#add('JavaScript-syntax')
+  call dein#add('vim-scripts/JavaScript-syntax')
   call dein#add('LeafCage/yankround.vim')
   call dein#add('tpope/vim-fugitive')
   call dein#add('kmnk/vim-unite-giti')
+  call dein#add('tomasr/molokai')
 
   " サブディレクトリを指定してdein#add()する場合
   " frozenオプションは自動で更新しない
@@ -453,3 +451,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 set list
 set listchars=tab:»-,trail:-,nbsp:%,eol:↲
 " }}}
+
+
+" カラースキーマの設定
+colorscheme molokai
